@@ -8,9 +8,11 @@ import { TodosService } from "../../services/todos";
 })
 export class AppHome {
   @State() todos: Todo[] = [];
+  public navCtrl = document.querySelector("ion-router");
 
   async componentDidLoad() {
-    this.todos = await TodosService.load();
+    //this.todos = await TodosService.load();
+    this.todos = [...(await TodosService.load())];
   }
 
   async addTodo() {
@@ -49,7 +51,7 @@ export class AppHome {
           <ion-title>Stencil Todo localStorage</ion-title>
           <ion-buttons slot="end">
             <ion-button onClick={() => this.addTodo()}>
-              <ion-icon slot="icon-only" name="clipboard" />
+              <ion-icon slot="icon-only" name="add-circle" />
             </ion-button>
           </ion-buttons>
         </ion-toolbar>
